@@ -9,7 +9,7 @@ class LoginState extends Equatable {
   const LoginState({
     this.email = '',
     this.password = '',
-    this.hideAndShowPassword= false,
+    this.hideAndShowPassword= true,
     
   });
 

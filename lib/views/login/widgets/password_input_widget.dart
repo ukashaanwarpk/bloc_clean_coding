@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PasswordInputWidget extends StatelessWidget {
   final TextEditingController passowrdController;
+  final FocusNode passwordFocus;
 
-  const PasswordInputWidget({super.key, required this.passowrdController});
+  const PasswordInputWidget({super.key, required this.passowrdController, required this.passwordFocus,});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class PasswordInputWidget extends StatelessWidget {
 
       builder: (context, state) {
         return TextFormField(
+          focusNode: passwordFocus,
           obscureText: state.hideAndShowPassword,
           keyboardType: TextInputType.number,
           controller: passowrdController,
@@ -27,6 +29,7 @@ class PasswordInputWidget extends StatelessWidget {
                 PasswordChange(password: value),
               ),
           validator: (value) => value!.isEmpty ? 'Enter Password' : null,
+          onFieldSubmitted: (value)=>passwordFocus.unfocus(),
           decoration: InputDecoration(
             suffixIcon: IconButton(
               onPressed: () {
@@ -38,6 +41,7 @@ class PasswordInputWidget extends StatelessWidget {
                     : Icons.visibility,
               ),
             ),
+            
             hintText: 'Password',
             border: BuildBorder.border(color: Colors.grey),
             focusedBorder: BuildBorder.border(color: Colors.grey),
