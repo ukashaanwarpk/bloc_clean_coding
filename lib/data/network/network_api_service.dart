@@ -57,7 +57,8 @@ class NetworkApiService with LoggerMixin implements BaseApiService {
         dynamic jsonResponse = jsonDecode(response.body.toString());
         return jsonResponse;
       case 400:
-        throw BadRequestException();
+         dynamic jsonResponse = jsonDecode(response.body.toString());
+        return jsonResponse;
 
       case 401:
         throw UnauthorisedException();

@@ -18,6 +18,7 @@ class LoginButton extends StatelessWidget with LoggerMixin {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
+      listenWhen: (previous, current) => previous.loginApiStatus != current.loginApiStatus,
       listener: (context, state) {
         if (state.loginApiStatus == LoginApiStatus.loading) {
           ScaffoldMessenger.of(context)
