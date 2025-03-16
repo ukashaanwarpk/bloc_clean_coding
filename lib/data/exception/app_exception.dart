@@ -11,7 +11,12 @@ class AppException implements Exception {
 
   @override
   String toString() {
-    return '$_message$_prefix'; // Returns the formatted error message
+    // If _message is null or empty, return only the prefix.
+    if (_message == null || _message.isEmpty) {
+      return _prefix;
+    }
+    // Otherwise, format the output as "prefix: message".
+    return '$_prefix: $_message';
   }
 }
 

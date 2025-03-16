@@ -21,7 +21,6 @@ class PasswordInputWidget extends StatelessWidget {
         return TextFormField(
           focusNode: passwordFocus,
           obscureText: state.hideAndShowPassword,
-          keyboardType: TextInputType.number,
           controller: passowrdController,
 
           onChanged:
