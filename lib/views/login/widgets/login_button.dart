@@ -1,6 +1,7 @@
 import 'package:bloc_clean_coding/bloc/login/login_bloc.dart';
 import 'package:bloc_clean_coding/config/components/log.dart';
 import 'package:bloc_clean_coding/utils/enums.dart';
+import 'package:bloc_clean_coding/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,9 @@ class LoginButton extends StatelessWidget with LoggerMixin {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
-      listenWhen: (previous, current) => previous.loginApiStatus != current.loginApiStatus,
+      listenWhen:
+          (previous, current) =>
+              previous.loginApiStatus != current.loginApiStatus,
       listener: (context, state) {
         if (state.loginApiStatus == LoginApiStatus.loading) {
           ScaffoldMessenger.of(context)
@@ -26,18 +29,16 @@ class LoginButton extends StatelessWidget with LoggerMixin {
             ..showSnackBar(const SnackBar(content: Text('submitting...')));
         }
         if (state.loginApiStatus == LoginApiStatus.success) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(const SnackBar(content: Text('Success')));
+          Utils.showSuccessMessage(context, 'Login Successful');
         }
         if (state.loginApiStatus == LoginApiStatus.failure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(state.message.toString())));
+          Utils.showErrorMessage(context, state.message.toString());
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
-        buildWhen: (previous, current) => false,
+        buildWhen:
+            (previous, current) =>
+                previous.loginApiStatus != current.loginApiStatus,
         builder: (context, state) {
           return ElevatedButton(
             onPressed: () {
@@ -54,7 +55,10 @@ class LoginButton extends StatelessWidget with LoggerMixin {
                 return;
               }
             },
-            child: const Text('Login'),
+            child:
+                state.loginApiStatus == LoginApiStatus.loading
+                    ? const CircularProgressIndicator()
+                    : const Text('Login'),
           );
         },
       ),
