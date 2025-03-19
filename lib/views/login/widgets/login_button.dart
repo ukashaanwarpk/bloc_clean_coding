@@ -1,5 +1,6 @@
 import 'package:bloc_clean_coding/bloc/login/login_bloc.dart';
 import 'package:bloc_clean_coding/config/components/log.dart';
+import 'package:bloc_clean_coding/config/routes/route_name.dart';
 import 'package:bloc_clean_coding/utils/enums.dart';
 import 'package:bloc_clean_coding/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,11 @@ class LoginButton extends StatelessWidget with LoggerMixin {
             ..showSnackBar(const SnackBar(content: Text('submitting...')));
         }
         if (state.loginApiStatus == LoginApiStatus.success) {
-          Utils.showSuccessMessage(context, 'Login Successful');
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            RouteName.home,
+            (route) => false,
+          );
         }
         if (state.loginApiStatus == LoginApiStatus.failure) {
           Utils.showErrorMessage(context, state.message.toString());

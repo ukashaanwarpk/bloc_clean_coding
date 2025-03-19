@@ -3,6 +3,7 @@ import 'package:bloc_clean_coding/repository/login_repository.dart';
 import 'package:bloc_clean_coding/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import '../../services/session_manager/session_controller.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -34,7 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     await loginRepository
         .loginApi(data)
-        .then((value) {
+        .then((value) async{
           if (value.error.isNotEmpty) {
             emit(
               state.copyWith(
@@ -43,6 +44,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               ),
             );
           } else {
+            await SessionController().saveUserData(value);
+            await SessionController().getUserData();
+            
             emit(
               state.copyWith(
                 loginApiStatus: LoginApiStatus.success,

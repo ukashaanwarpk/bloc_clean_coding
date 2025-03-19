@@ -1,5 +1,6 @@
 import 'package:bloc_clean_coding/bloc/login/login_bloc.dart';
 import 'package:bloc_clean_coding/main.dart';
+import 'package:bloc_clean_coding/repository/auth/auth_http_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/export.dart';
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _loginBloc = LoginBloc(loginRepository: getIt());
+    _loginBloc = LoginBloc(loginRepository:  getIt());
   }
 
   @override
