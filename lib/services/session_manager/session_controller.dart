@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:bloc_clean_coding/config/components/log.dart';
 import 'package:bloc_clean_coding/model/user/user_model.dart';
 import 'package:bloc_clean_coding/services/storage/local_storage.dart';
 import 'package:flutter/foundation.dart';
 
-class SessionController {
+class SessionController with LoggerMixin {
   final LocalStorage _localStorage = LocalStorage();
 
   static UserModel user = UserModel();
@@ -26,10 +27,12 @@ class SessionController {
 
   Future<void> getUserData() async {
     try {
-      String userData = await _localStorage.readValue('token');
-      var isLogin = await _localStorage.readValue('isLogin');
+      String? userData = await _localStorage.readValue('token');
+      String? isLogin = await _localStorage.readValue('isLogin');
 
-      if (userData.isNotEmpty) {
+      logMessage('isLogin $isLogin, userdata $userData');
+
+      if (userData != null && userData.isNotEmpty) {
         SessionController.user = UserModel.fromJson(jsonDecode(userData));
       }
       SessionController.isLogin = isLogin == 'true' ? true : false;
