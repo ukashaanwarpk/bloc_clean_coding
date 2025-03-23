@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bloc_clean_coding/repository/login_repository.dart';
+import 'package:bloc_clean_coding/repository/auth/login_repository.dart';
 import 'package:bloc_clean_coding/utils/enums.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';

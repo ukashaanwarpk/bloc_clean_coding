@@ -2,7 +2,7 @@
 import 'package:bloc_clean_coding/config/app_url.dart';
 import 'package:bloc_clean_coding/data/network/network_api_service.dart';
 import 'package:bloc_clean_coding/model/user/user_model.dart' show UserModel;
-import 'package:bloc_clean_coding/repository/login_repository.dart';
+import 'package:bloc_clean_coding/repository/auth/login_repository.dart';
 
 class AuthHttpApiRepository implements LoginRepository{
 
