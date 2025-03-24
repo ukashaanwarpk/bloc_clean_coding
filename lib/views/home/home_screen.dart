@@ -77,10 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: movies.tvShow.length,
                   itemBuilder: (context, index) {
                     final tvShows = movies.tvShow[index];
-
-                    debugPrint('Image path ${tvShows.imageThumbnailPath}');
-                    debugPrint('start_date ${tvShows.startDate}');
-
                     return Card(
                       child: ListTile(
                         leading: NetworkImageWidget(

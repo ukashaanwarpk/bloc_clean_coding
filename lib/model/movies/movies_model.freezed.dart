@@ -164,7 +164,7 @@ as List<TvShows>,
 /// @nodoc
 mixin _$TvShows {
 
-@JsonKey(name: 'name') String get name; String get permalink; String get endDate; String get startDate; String get network; String get imageThumbnailPath; String get status;
+@JsonKey(name: 'name') String get name; String get permalink; String get status;@JsonKey(name: 'end_date') String get endDate;@JsonKey(name: 'start_date') String get startDate; String get network;@JsonKey(name: 'image_thumbnail_path') String get imageThumbnailPath;
 /// Create a copy of TvShows
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -177,16 +177,16 @@ $TvShowsCopyWith<TvShows> get copyWith => _$TvShowsCopyWithImpl<TvShows>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TvShows&&(identical(other.name, name) || other.name == name)&&(identical(other.permalink, permalink) || other.permalink == permalink)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.network, network) || other.network == network)&&(identical(other.imageThumbnailPath, imageThumbnailPath) || other.imageThumbnailPath == imageThumbnailPath)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TvShows&&(identical(other.name, name) || other.name == name)&&(identical(other.permalink, permalink) || other.permalink == permalink)&&(identical(other.status, status) || other.status == status)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.network, network) || other.network == network)&&(identical(other.imageThumbnailPath, imageThumbnailPath) || other.imageThumbnailPath == imageThumbnailPath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,permalink,endDate,startDate,network,imageThumbnailPath,status);
+int get hashCode => Object.hash(runtimeType,name,permalink,status,endDate,startDate,network,imageThumbnailPath);
 
 @override
 String toString() {
-  return 'TvShows(name: $name, permalink: $permalink, endDate: $endDate, startDate: $startDate, network: $network, imageThumbnailPath: $imageThumbnailPath, status: $status)';
+  return 'TvShows(name: $name, permalink: $permalink, status: $status, endDate: $endDate, startDate: $startDate, network: $network, imageThumbnailPath: $imageThumbnailPath)';
 }
 
 
@@ -197,7 +197,7 @@ abstract mixin class $TvShowsCopyWith<$Res>  {
   factory $TvShowsCopyWith(TvShows value, $Res Function(TvShows) _then) = _$TvShowsCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'name') String name, String permalink, String endDate, String startDate, String network, String imageThumbnailPath, String status
+@JsonKey(name: 'name') String name, String permalink, String status,@JsonKey(name: 'end_date') String endDate,@JsonKey(name: 'start_date') String startDate, String network,@JsonKey(name: 'image_thumbnail_path') String imageThumbnailPath
 });
 
 
@@ -214,15 +214,15 @@ class _$TvShowsCopyWithImpl<$Res>
 
 /// Create a copy of TvShows
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? permalink = null,Object? endDate = null,Object? startDate = null,Object? network = null,Object? imageThumbnailPath = null,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? permalink = null,Object? status = null,Object? endDate = null,Object? startDate = null,Object? network = null,Object? imageThumbnailPath = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,permalink: null == permalink ? _self.permalink : permalink // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as String,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as String,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
 as String,imageThumbnailPath: null == imageThumbnailPath ? _self.imageThumbnailPath : imageThumbnailPath // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -234,16 +234,16 @@ as String,
 @JsonSerializable()
 
 class _TvShows implements TvShows {
-   _TvShows({@JsonKey(name: 'name') this.name = '', this.permalink = '', this.endDate = '', this.startDate = '', this.network = '', this.imageThumbnailPath = '', this.status = ''});
+   _TvShows({@JsonKey(name: 'name') this.name = '', this.permalink = '', this.status = '', @JsonKey(name: 'end_date') this.endDate = '', @JsonKey(name: 'start_date') this.startDate = '', this.network = '', @JsonKey(name: 'image_thumbnail_path') this.imageThumbnailPath = ''});
   factory _TvShows.fromJson(Map<String, dynamic> json) => _$TvShowsFromJson(json);
 
 @override@JsonKey(name: 'name') final  String name;
 @override@JsonKey() final  String permalink;
-@override@JsonKey() final  String endDate;
-@override@JsonKey() final  String startDate;
-@override@JsonKey() final  String network;
-@override@JsonKey() final  String imageThumbnailPath;
 @override@JsonKey() final  String status;
+@override@JsonKey(name: 'end_date') final  String endDate;
+@override@JsonKey(name: 'start_date') final  String startDate;
+@override@JsonKey() final  String network;
+@override@JsonKey(name: 'image_thumbnail_path') final  String imageThumbnailPath;
 
 /// Create a copy of TvShows
 /// with the given fields replaced by the non-null parameter values.
@@ -258,16 +258,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TvShows&&(identical(other.name, name) || other.name == name)&&(identical(other.permalink, permalink) || other.permalink == permalink)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.network, network) || other.network == network)&&(identical(other.imageThumbnailPath, imageThumbnailPath) || other.imageThumbnailPath == imageThumbnailPath)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TvShows&&(identical(other.name, name) || other.name == name)&&(identical(other.permalink, permalink) || other.permalink == permalink)&&(identical(other.status, status) || other.status == status)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.network, network) || other.network == network)&&(identical(other.imageThumbnailPath, imageThumbnailPath) || other.imageThumbnailPath == imageThumbnailPath));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,permalink,endDate,startDate,network,imageThumbnailPath,status);
+int get hashCode => Object.hash(runtimeType,name,permalink,status,endDate,startDate,network,imageThumbnailPath);
 
 @override
 String toString() {
-  return 'TvShows(name: $name, permalink: $permalink, endDate: $endDate, startDate: $startDate, network: $network, imageThumbnailPath: $imageThumbnailPath, status: $status)';
+  return 'TvShows(name: $name, permalink: $permalink, status: $status, endDate: $endDate, startDate: $startDate, network: $network, imageThumbnailPath: $imageThumbnailPath)';
 }
 
 
@@ -278,7 +278,7 @@ abstract mixin class _$TvShowsCopyWith<$Res> implements $TvShowsCopyWith<$Res> {
   factory _$TvShowsCopyWith(_TvShows value, $Res Function(_TvShows) _then) = __$TvShowsCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'name') String name, String permalink, String endDate, String startDate, String network, String imageThumbnailPath, String status
+@JsonKey(name: 'name') String name, String permalink, String status,@JsonKey(name: 'end_date') String endDate,@JsonKey(name: 'start_date') String startDate, String network,@JsonKey(name: 'image_thumbnail_path') String imageThumbnailPath
 });
 
 
@@ -295,15 +295,15 @@ class __$TvShowsCopyWithImpl<$Res>
 
 /// Create a copy of TvShows
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? permalink = null,Object? endDate = null,Object? startDate = null,Object? network = null,Object? imageThumbnailPath = null,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? permalink = null,Object? status = null,Object? endDate = null,Object? startDate = null,Object? network = null,Object? imageThumbnailPath = null,}) {
   return _then(_TvShows(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,permalink: null == permalink ? _self.permalink : permalink // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as String,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as String,network: null == network ? _self.network : network // ignore: cast_nullable_to_non_nullable
 as String,imageThumbnailPath: null == imageThumbnailPath ? _self.imageThumbnailPath : imageThumbnailPath // ignore: cast_nullable_to_non_nullable
-as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

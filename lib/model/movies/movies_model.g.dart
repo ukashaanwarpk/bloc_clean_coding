@@ -28,19 +28,19 @@ Map<String, dynamic> _$MoviesModelToJson(_MoviesModel instance) =>
 _TvShows _$TvShowsFromJson(Map<String, dynamic> json) => _TvShows(
   name: json['name'] as String? ?? '',
   permalink: json['permalink'] as String? ?? '',
-  endDate: json['endDate'] as String? ?? '',
-  startDate: json['startDate'] as String? ?? '',
-  network: json['network'] as String? ?? '',
-  imageThumbnailPath: json['imageThumbnailPath'] as String? ?? '',
   status: json['status'] as String? ?? '',
+  endDate: json['end_date'] as String? ?? '',
+  startDate: json['start_date'] as String? ?? '',
+  network: json['network'] as String? ?? '',
+  imageThumbnailPath: json['image_thumbnail_path'] as String? ?? '',
 );
 
 Map<String, dynamic> _$TvShowsToJson(_TvShows instance) => <String, dynamic>{
   'name': instance.name,
   'permalink': instance.permalink,
-  'endDate': instance.endDate,
-  'startDate': instance.startDate,
-  'network': instance.network,
-  'imageThumbnailPath': instance.imageThumbnailPath,
   'status': instance.status,
+  'end_date': instance.endDate,
+  'start_date': instance.startDate,
+  'network': instance.network,
+  'image_thumbnail_path': instance.imageThumbnailPath,
 };
