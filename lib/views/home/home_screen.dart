@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 200 &&
-          moviesBloc.state.hasMore) {
+        moviesBloc.state.hasMore) {
         moviesBloc.add(FetchMoreMovies());
       }
     });

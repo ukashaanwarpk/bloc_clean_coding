@@ -7,7 +7,7 @@ class MoviesState extends Equatable {
 
   final int currentPage;
 
-  const MoviesState({required this.apiResponse, this.currentPage = 1, this.hasMore = false});
+  const MoviesState({required this.apiResponse, this.currentPage = 1, this.hasMore = true});
 
   @override
   List<Object> get props => [apiResponse, currentPage, hasMore];
