@@ -5,20 +5,23 @@ import '../colors/app_colors.dart';
 class RoundButton extends StatelessWidget {
   final double height;
   final double width;
-  final String title;
+ 
   final VoidCallback onPress;
   final Color textColor;
   final Color bgColor;
   final double radius;
+  final Widget child;
+
   const RoundButton({
     super.key,
     this.height = 55,
     this.width = 200,
-    required this.title,
+   
     required this.onPress,
     this.bgColor = AppColors.greenColor,
-    this.textColor = AppColors.blackColor,
+    this.textColor = AppColors.whiteColor,
     this.radius = 15,
+    required this.child,
   });
 
   @override
@@ -32,7 +35,7 @@ class RoundButton extends StatelessWidget {
           color: bgColor,
           borderRadius: BorderRadius.circular(radius),
         ),
-        child: Text(title, style: TextStyle(color: textColor)),
+        child: Center(child: child,),
       ),
     );
   }

@@ -16,17 +16,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late MoviesBloc moviesBloc;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     moviesBloc = MoviesBloc(moviesRepository: getIt());
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 200 &&
+          moviesBloc.state.hasMore) {
+        moviesBloc.add(FetchMoreMovies());
+      }
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
     moviesBloc.close();
+    _scrollController.dispose();
   }
 
   @override
@@ -73,21 +82,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 final movies = state.apiResponse.data!;
                 return ListView.builder(
+                  controller: _scrollController,
                   shrinkWrap: true,
-                  itemCount: movies.tvShow.length,
+                  itemCount: movies.tvShow.length + 1, // extra item for loader
                   itemBuilder: (context, index) {
-                    final tvShows = movies.tvShow[index];
-                    return Card(
-                      child: ListTile(
-                        leading: NetworkImageWidget(
-                          borderRadius: 5,
-                          imageUrl: tvShows.imageThumbnailPath.toString(),
-                        ), //
-                        title: Text(tvShows.name.toString()),
-                        trailing: Text(tvShows.status.toString()),
-                        subtitle: Text(tvShows.network.toString()),
-                      ),
-                    );
+                    if (index < movies.tvShow.length) {
+                      final tvShows = movies.tvShow[index];
+                      return Card(
+                        child: ListTile(
+                          leading: NetworkImageWidget(
+                            borderRadius: 5,
+                            imageUrl: tvShows.imageThumbnailPath.toString(),
+                          ), //
+                          title: Text(tvShows.name.toString()),
+                          trailing: Text(tvShows.status.toString()),
+                          subtitle: Text(tvShows.network.toString()),
+                        ),
+                      );
+                    } else {
+                      return state.hasMore
+                          ? const Padding(
+                            padding:  EdgeInsets.all(8.0),
+                            child:  Center(child: CircularProgressIndicator()),
+                          )
+                          : const SizedBox();
+                    }
                   },
                 );
 

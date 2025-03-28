@@ -1,5 +1,6 @@
 import 'package:bloc_clean_coding/bloc/login/login_bloc.dart';
 import 'package:bloc_clean_coding/config/components/log.dart';
+import 'package:bloc_clean_coding/config/components/round_button.dart';
 import 'package:bloc_clean_coding/config/routes/route_name.dart';
 import 'package:bloc_clean_coding/utils/enums.dart';
 import 'package:bloc_clean_coding/utils/utils.dart';
@@ -45,8 +46,8 @@ class LoginButton extends StatelessWidget with LoggerMixin {
             (previous, current) =>
                 previous.loginApiStatus != current.loginApiStatus,
         builder: (context, state) {
-          return ElevatedButton(
-            onPressed: () {
+          return RoundButton(
+            onPress: () {
               if (formkey.currentState!.validate()) {
                 context.read<LoginBloc>().add(LoginApi());
                 context.read<LoginBloc>().add(
@@ -62,8 +63,8 @@ class LoginButton extends StatelessWidget with LoggerMixin {
             },
             child:
                 state.loginApiStatus == LoginApiStatus.loading
-                    ? const CircularProgressIndicator()
-                    : const Text('Login'),
+                    ? const CircularProgressIndicator(color: Colors.white,)
+                    : const Text('Login', style: TextStyle(color: Colors.white),),
           );
         },
       ),

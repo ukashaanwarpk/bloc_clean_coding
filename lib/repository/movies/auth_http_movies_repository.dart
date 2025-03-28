@@ -7,8 +7,8 @@ class AuthHttpMoviesRepository extends MoviesRepository {
   final _api = NetworkApiService();
 
   @override
-  Future<MoviesModel> fetchMoviesList() async {
-    final response = await _api.getApi(AppUrl.popularMoviesListEndPoint);
+  Future<MoviesModel> fetchMoviesList({int page = 1}) async {
+    final response =  await _api.getApi('${AppUrl.popularMoviesListEndPoint}?page=$page');
 
     return MoviesModel.fromJson(response);
   }

@@ -5,3 +5,6 @@ abstract class MoviesEvent {
 }
 
 class FetchMovies extends MoviesEvent {}
+
+
+class FetchMoreMovies extends MoviesEvent{}
