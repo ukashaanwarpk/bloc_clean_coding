@@ -25,7 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 200 &&
-        moviesBloc.state.hasMore) {
+          moviesBloc.state.hasMore &&
+          !moviesBloc.state.isFetchingMore) {
         moviesBloc.add(FetchMoreMovies());
       }
     });
@@ -102,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     } else {
                       return state.hasMore
                           ? const Padding(
-                            padding:  EdgeInsets.all(8.0),
-                            child:  Center(child: CircularProgressIndicator()),
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(child: CircularProgressIndicator()),
                           )
                           : const SizedBox();
                     }
